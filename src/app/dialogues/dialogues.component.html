@@ -1,0 +1,233 @@
+<p-dialog header="Product Details" [(visible)]="createProduct" [focusOnShow]="false" [responsive]="true" [modal]="true"
+    class="productModal" closeOnEscape="false" draggable="false" resizable="false" (onHide)="onHide($event)">
+    <div class="p-grid ui-fluid" *ngIf="productId">
+        <form [formGroup]="addProductForm" class="w-100" autocomplete="off">
+            <div class="row p-0 profile-form-wrap">
+                <div class="col-12 p-0">
+                    <div class="card-1 ml-2 mr-2">
+                        <div class="card-content">
+                            <!-- left -->
+                            <div class="side-ico">
+                                <div class="col img-upload-wrap">
+                                    <div class="image-upload imagedivcss">
+                                        <label for="file-input" style="cursor: pointer;">
+                                            <img [src]="imgPath ? imgPath : 'assets/imgs/addprofile.png'"
+                                                alt="add profile" class="profileImg">
+                                        </label>
+                                        <input id="file-input" type="file" accept="image/x-png,image/gif,image/jpeg"
+                                            (change)="onFileSelected($event)" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- right -->
+                            <div class="input-wrap row m-0">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pl-xl-0 pl-lg-0 pl-md-0 ">
+                                    <div class="form-group mb-0">
+                                        <label for="bname" class="col-form-label pb-0 mand-label">Product Name</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="bname"
+                                                formControlName="productName" autocomplete="off" list="autocompleteOff">
+                                            <div *ngIf="f.productName.errors">
+                                                <small class="form-text text-danger"
+                                                    *ngIf="!f.productName.valid && f.productName.touched && f.productName.dirty && f.productName.errors.required">Business
+                                                    Name is
+                                                    required.</small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group mb-0 ">
+                                        <label for="cost" class="col-form-label pb-0">Cost</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="cost" formControlName="cost"
+                                                autocomplete="off" list="autocompleteOff">
+                                            <div *ngIf="f.cost.errors">
+                                                <small class="form-text text-danger"
+                                                    *ngIf="!f.cost.valid && f.cost.touched  && f.cost.dirty && f.cost.errors.required">Product
+                                                    cost is
+                                                    required.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 ">
+
+                                        <label for="salesPrice" class="col-form-label pb-0">Sales Price</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="salesPrice"
+                                                formControlName="salesPrice" autocomplete="off" list="autocompleteOff">
+                                            <div *ngIf="f.salesPrice.errors">
+                                                <small class="form-text text-danger"
+                                                    *ngIf="!f.salesPrice.valid && f.salesPrice.touched  && f.salesPrice.dirty && f.salesPrice.errors.required">Product
+                                                    Sales Price is
+                                                    required.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 ">
+                                        <label for="retailPrice" class="col-form-label pb-0">Retail Price</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="retailPrice"
+                                                formControlName="retailPrice" autocomplete="off" list="autocompleteOff">
+                                            <div *ngIf="f.retailPrice.errors">
+                                                <small class="form-text text-danger"
+                                                    *ngIf="!f.retailPrice.valid && f.retailPrice.touched  && f.retailPrice.dirty && f.retailPrice.errors.required">Product
+                                                    Retail Price is
+                                                    required.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-xl-0 p-lg-0 p-md-0">
+                                    <div class="form-group mb-0 ">
+                                        <label for="inventory" class="col-form-label pb-0">Inventory</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="inventory"
+                                                formControlName="inventory" autocomplete="off" list="autocompleteOff">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 ">
+
+                                        <label for="manufacturing" class="col-form-label pb-0">Manufacturing</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="manufacturing"
+                                                formControlName="manufacturing" autocomplete="off"
+                                                list="autocompleteOff">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 ">
+
+                                        <label for="backorder" class="col-form-label pb-0">Backorder</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="backorder"
+                                                formControlName="backorder" autocomplete="off" list="autocompleteOff">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 ">
+
+                                        <label for="category" class="col-form-label pb-0">Category</label>
+                                        <div class="">
+                                            <input class="form-control" type="text" id="category"
+                                                formControlName="category" autocomplete="off" list="autocompleteOff">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-times" [disabled]="isNew" (click)="delete(productId)"
+            class="ui-button-raised ui-button-secondary" label="Delete"></button>
+            <button type="submit" pButton icon="pi pi-check" [disabled]="!addProductForm.valid"
+            class="ui-button-raised ui-button-secondary" (click)="save(addProductForm.value)" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<p-dialog header="Create Custom Filter" [(visible)]="createFilter" [focusOnShow]="false" [responsive]="true"
+    [modal]="true" class="filterModal" closeOnEscape="false" draggable="false" resizable="false" (onHide)="onFilterHide($event)">
+    <div class="p-grid ui-fluid">
+        <form [formGroup]="filterForm" class="w-100" autocomplete="off">
+            <div class="row p-0 profile-form-wrap">
+                <div class="col-12 p-0">
+                    <div class="card-1 m-auto">
+                        <div class="row">
+                            <div class="col-2">
+                                <button pButton type="button" label="Add" (click)="onAddRow()"
+                                    class="ui-button-raised btnColor"></button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="w-100 input-wrap">
+                                <div class="row m-0">
+                                    <div class="col-12 p-0 m-auto">
+                                        <div class="form-row">
+                                            <div class="col-1">
+                                                <label for="value"
+                                                    class=" col-form-label col-form-label-sm text-white">D</label>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="fieldName" class=" col-form-label col-form-label-sm">Field
+                                                    Name:<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="operator"
+                                                    class=" col-form-label col-form-label-sm">Operator<span
+                                                        class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label for="value" class=" col-form-label col-form-label-sm">Value<span
+                                                        class="text-danger">*</span></label>
+                                            </div>
+                                        </div>
+                                        <div formArrayName="filterRow">
+                                            <div *ngFor="let ctrl of filterRows.controls;let i = index"
+                                                [formGroupName]="i">
+                                                <div class="form-row mb-2">
+                                                    <div class="col-1 deleteRow">
+                                                        <button pButton type="button" icon="pi pi-times"
+                                                            class="ui-button-raised ui-button-secondary"
+                                                            (click)="onDeleteRow(i)">
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p-dropdown [options]="fieldName" id="fieldName"
+                                                            name="fieldName" formControlName="fieldName" class="select"
+                                                            placeholder="Field Name" optionLabel="label"
+                                                            [showClear]="false" scrollHeight="100px">
+                                                        </p-dropdown>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p-dropdown [options]="operator" id="operator" name="operator"
+                                                            formControlName="operator" class="select"
+                                                            placeholder="Operator" optionLabel="label"
+                                                            [showClear]="false" scrollHeight="100px">
+                                                        </p-dropdown>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <input type="text" pInputText
+                                                            class="form-control form-control-sm" formControlName='value'
+                                                            id="value" name="value">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-0 mt-2 profile-form-wrap">
+                <div class="col-11 pl-4 w-85 m-auto">
+                    <p-checkbox formControlName='save' binary="true" label="Save for furture user"></p-checkbox>
+                </div>
+            </div>
+            <div class="row p-0 mt-2 profile-form-wrap">
+                <div class="col-11 pl-4 w-85 m-auto">
+                    <input type="text" pInputText class="form-control form-control-sm" formControlName='filterName'
+                        placeholder="Enter a name for your custome filter" id="filterName" name="filterName">
+                </div>
+            </div>
+        </form>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <div class="row p-0 mt-2 profile-form-wrap">
+                <div class="col-11 pl-4 w-85 m-auto">
+                    <button type="button" pButton class="ui-button-raised ui-button-secondary"
+                        (click)="onFilterHide(false)" label="OK"></button>
+                    <button type="submit" pButton class="ui-button-raised ui-button-secondary"
+                        (click)="onFilterHide(false)" label="Cancel"></button>
+                </div>
+            </div>
+        </div>
+    </p-footer>
+</p-dialog>

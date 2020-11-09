@@ -1,0 +1,101 @@
+.productModal{
+    .ui-dialog{
+        width: 50%;
+        height: 53vh;
+    }
+    .ui-dialog .ui-dialog-titlebar{
+        color: #cc285ce6;
+    }
+    .ui-dialog .ui-dialog-content.ui-widget-content {
+        height: auto;
+        max-height: 800px;
+        border: 1px solid #ffffff;
+        overflow: hidden !important;
+    }
+    .card-1{
+        padding: 3px 10px 8px 10px;
+        -webkit-box-shadow: -1px 1px 11px -3px rgba(0,0,0,0.75);
+        -moz-box-shadow: -1px 1px 11px -3px rgba(0,0,0,0.75);
+        box-shadow: -1px 1px 11px -3px rgba(0,0,0,0.75);
+    }
+
+  .card-content {
+    display: flex;
+    margin-top: 10px;
+        .side-ico {
+            width: 25%;
+            padding-top: 5px;
+            padding-left: 5px;
+            img {
+            width: 22px;
+            }
+        }
+    .input-wrap{
+        width: 90%;
+    }
+  }
+  .image-upload>input {
+    display: none;
+    } 
+  .image-upload img.profileImg{
+    width: 100px !important;
+    height: 100px;
+    border-radius: 50%;
+    }
+}
+
+.filterModal{
+    .ui-dialog{
+        width: 45%;
+        height: auto;
+        max-height: 86vh;
+    }
+    .ui-dialog .ui-dialog-titlebar{
+        color: #cc285ce6;
+    }
+    .ui-dialog .ui-dialog-content.ui-widget-content {
+        height: auto;
+        max-height: 800px;
+        border: 1px solid #ffffff;
+        overflow: hidden !important;
+    }
+    .card-1{
+        padding: 3px 10px 8px 10px;
+        -webkit-box-shadow: -1px 1px 11px -3px rgba(0,0,0,0.75);
+        -moz-box-shadow: -1px 1px 11px -3px rgba(0,0,0,0.75);
+        box-shadow: -1px 1px 11px -3px rgba(0,0,0,0.75);
+        width: 85%;
+    }
+    .w-85{
+        width: 85%;
+    }
+  .card-content {
+    display: flex;
+    margin-top: 10px;
+        
+    .input-wrap{
+        max-height: 400px;
+        height: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+  }
+  .form-control-sm{
+    line-height: 1.8 !important;
+  }
+  .btnColor, .btnColor:hover{
+    background-color: #cc285ce6 !important;
+    border: 1px solid #cc285ce6;
+    color: #ffffff !important;
+  }
+  .ui-dropdown-panel .ui-dropdown-items {
+    padding: 0;
+    width: 174px;
+  }
+  .ui-chkbox .ui-chkbox-box.ui-state-active,
+  .ui-chkbox .ui-chkbox-box.ui-state-active:not(.ui-state-disabled):hover{
+    border-color: #fff;
+    background-color: #fff;
+    color: #cc285ce6;
+ }
+}

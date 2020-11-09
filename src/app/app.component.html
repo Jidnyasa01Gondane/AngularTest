@@ -1,0 +1,119 @@
+<p-table class="table" [columns]="selectedColumns" #dt [value]="products" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Page {currentPage} to {totalPages} ({totalRecords} items)"
+    selectionMode="single" [(selection)]="selectedProdut" dataKey="Product_Name" (onRowSelect)="onRowSelect($event)">
+    <ng-template pTemplate="caption">
+        <div class="row w-100 m-0 mt-2">
+            <div class="col-12 pr-0">
+                <div class="buttons">
+                    <a class="pointer mr-4 float-left" pTooltip="Add Product" tooltipPosition="top">
+                        <button pButton type="button" label="Add" class="ui-button-raised ui-button-secondary"
+                            (click)="showDialogToAdd()"></button>
+                    </a>
+                    <a class="pointer mr-4 float-left" pTooltip="Delete Product" tooltipPosition="top">
+                        <button pButton type="button" label="Delete" (click)="displayAddSlider = true;"
+                            class="ui-button-raised ui-button-secondary"></button>
+                    </a>
+                </div>
+                <a class="pointer mr-2 float-left">
+                    <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" class="ml-2 mr-2"
+                        pTooltip="Grid columns" tooltipPosition="top" optionLabel="header"
+                        selectedItemsLabel="{0} columns selected" dropdownIcon="pi pi-table"
+                        defaultLabel="Choose Columns">
+                    </p-multiSelect>
+                </a>
+                <div class="exports">
+                    <button pButton type="button" icon="pi pi-file-excel"
+                        class="mr-4 float-left ui-button-raised ui-button-secondary" (click)="exportExcel()"
+                        pTooltip="Export" tooltipPosition="top"></button>
+                </div>
+                <a class="pointer mr-4 float-left" pTooltip="Custome Filter" tooltipPosition="top">
+                    <button pButton type="button" icon="pi pi-filter" (click)="displayFilterSlider = true;"
+                        class="ui-button-raised ui-button-secondary"></button>
+                </a>
+                <span class="searchSpan d-inline-block float-right mr-2">
+                    <i class="pi pi-search" aria-hidden="true"></i>
+                    <input placeholder="Search" class="searchBar" type="text"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')">
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [class]="col.class">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns" [class]="col.class">
+                <div
+                    *ngIf="col.field !== 'Product_Cost' && col.field !== 'Product_Sale_Price' && col.field !== 'Product_Retail_Price'; else priceData">
+                    {{rowData[col.field]}}
+                </div>
+                <ng-template #priceData>
+                    ${{rowData[col.field] | number: '1.0-0'}}
+                </ng-template>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="row m-0" *ngIf="selectedProdut">
+            <div class="col-4 p-0">
+                <div class="row m-0">
+                    <div class="heading text-left d-flex">
+                        <h3 class="text-color">{{selectedProdut ? selectedProdut.Product_Name : ''}}</h3>
+                        <p-rating class="mt-2 ml-2" [(ngModel)]="rating" [cancel]="false" [readonly]="true"></p-rating>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col" *ngIf="selectedProdut">
+                        <img src="data:image/png;base64,{{selectedProdut.product.Product_Primary_Image}}" class="w-100"
+                            alt="productImage">
+                    </div>
+                    <div class="col" *ngIf="selectedProdut">
+                        <div class="detail text-left mb-2">
+                            <label class="text-secondary mb-0">LEAD ENGINEER</label>
+                            <div class="text-black">{{selectedProdut.leadEngineer.Employee_Full_Name | uppercase}}</div>
+                        </div>
+                        <div class="detail text-left">
+                            <label class="text-secondary mb-0">TECH SUPPORT</label>
+                            <div class="text-black">{{selectedProdut.techSupport.Employee_Full_Name | uppercase}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 p-0">
+                <p-tabView class="configuration">
+                    <p-tabPanel header="Catlog Images">
+                        <p-carousel [value]="imagesCatlog" [numVisible]="4" [numScroll]="4" [circular]="false">
+                            <ng-template pTemplate="header">
+                                <h5>Basic</h5>
+                            </ng-template>
+                            <ng-template let-product pTemplate="item">
+                                <div class="product-item">
+                                    <div class="product-item-content">
+                                        <div class="p-mb-3">
+                                        </div>
+                                        <div class="col-12">
+                                            <img class="w-100 imageCatlog" src="data:image/png;base64,{{product}}"
+                                                alt="imageCatlog">
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-carousel>
+                    </p-tabPanel>
+                    <p-tabPanel header="Sales and Operations">
+                        <p-chart type="bar" [data]="chartData" height="200px"></p-chart>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </ng-template>
+</p-table>
+<app-dialogues [createProduct]=displayAddSlider (cancelAddEmit)="getCancelAddMessage($event)"
+    (saveAddEmit)="save($event)" (deleteEmit)="delete($event)" [productId]=product [isNew]=newProduct
+    [createFilter]=displayFilterSlider (cancelFilterEmit)="getCancelFilterMessage($event)">
+</app-dialogues>

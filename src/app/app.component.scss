@@ -1,0 +1,96 @@
+.table{
+    .name{
+        width: 150px;
+    }
+    .cost,.saleprice,.retailprice,.inventory,.manufacturing,.backorder{
+        width: 70px;
+        text-align: right;
+    }
+    .pi-search{
+        margin:4px 4px 0 0;
+        position: fixed;
+        right: 18px;
+    }
+    .text-color{
+        color: #cc285c;
+    }
+    .imageCatlog{
+        border: 1px solid #cecece;
+        padding: 5px;
+    }
+    .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
+        background-color: #ffffff;
+        color: #333333;
+        border: 0;
+        padding: 0 0.25em 0.25rem 0;
+        text-align: center;
+        
+    } 
+    .ui-tabview .ui-tabview-panels {
+        background-color: #ffffff;
+        padding: 0.571em 1em;
+        border: 1px solid #c8c8c8;
+        color: #333333;
+        height: 218px;
+    }
+    .ui-table .ui-table-tbody > tr.ui-state-highlight,
+    .ui-table .ui-table-tbody > tr:nth-child(even).ui-state-highlight,
+    .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active,
+    .ui-carousel .ui-carousel-dots-container .ui-carousel-dot-item.ui-state-highlight .ui-carousel-dot-icon{
+        background-color: #cc285ce6;
+        color: #ffffff;
+    }
+    .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active, .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active:hover, 
+    .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active, .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active:hover, 
+    .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active, .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active:hover, 
+    .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active, .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover,
+    .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active a, .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active a:hover,
+     .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active a, .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active  a:hover,
+     .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active  a:hover,.ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active  a:hover, 
+    .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active a, .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state{
+        background-color: #dbdbdb;
+        color: #cc285ce6;
+    }
+    .ui-table .ui-paginator-bottom {
+        text-align: right;
+    }
+    .pi-step-backward:before {
+        content: "\e916";
+    }
+    .pi-caret-left:before {
+        content: "\e900";
+    }
+    .pi-caret-right:before {
+        content: "\e901";
+    }
+    .pi-step-forward:before {
+        content: "\e917";
+    }
+
+    .ui-multiselect-label {
+        padding: 0 !important;
+        margin-top: 4px !important;
+        margin-left: 4px !important;
+    }
+  
+    .ui-multiselect .ui-multiselect-label-container {
+        overflow: hidden;
+        display: none;
+    }
+    .ui-multiselect .ui-multiselect-trigger .ui-multiselect-trigger-icon{
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+        color: #333333;
+        background-color: #f4f4f4;
+        border: 1px solid #f4f4f4;
+        padding: 6px;
+        margin-top: -.8em !important;
+    }
+
+    .buttons{
+        margin-right: 5em;
+    }
+    .exports{
+        margin-right: 10rem;
+    }
+    
+}
